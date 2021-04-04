@@ -21,8 +21,7 @@
 			<a href="https://tc39.es/ecma262/">tc39.es/ecma262/</a></p>
 
       <div class="fragment fade-down">
-      <h4 >I will provide a link to this presentation
-        at the end</h4>
+      <p>Presentation is online on <a href="https://abovelaika.github.io/ES2021Presentation">GitHub</a></p>
       </div>
 
           <aside class="notes">
@@ -52,9 +51,9 @@
           </aside>
       </section>
   
-      <section id="intro-points">
+      <section id="whatWeLearn">
         <h1>What are we learning then?</h1>
-        <img data-src="https://i.ibb.co/6ZTW8ZJ/tcc39.png" num="08" height="200px" id="test-img">
+        <img data-src="https://i.ibb.co/6ZTW8ZJ/tcc39.png" num="08" height="200px" id="test-img" />
         <p class="fragment fade-up">...but only the 
           <a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">stage 4 proposals</a>
           <p>New features released in 2020/2021</p>
@@ -82,6 +81,20 @@
         hence we are 100% sure that what we will see today,
         is going to be implemented in JS.
       </aside>
+      </section>
+
+      <section id="intro-points">
+        <h1>Summary</h1>
+        <ol style="cursor: pointer;">
+        <li><a href="#replaceAllIntro1">String.prototype.replaceAll()</a></li>
+        <li><a href="#NumericSeparators">Numeric Separators</a></li>
+        <li><a href="#LogicalAssignmentOperators1">Logical Assignment Operators</a></li>
+        <li><a href="#promiseAny">Promise.any() and AggregateError</a></li>
+        <li><a href="#WeakRefs">WeakRefs and Finalizers</a></li>
+      </ol>
+        <aside class="notes">
+          📝
+        </aside>
       </section>
 
       <section data-auto-animate id="replaceAllIntro1">
@@ -282,9 +295,10 @@ at String.replaceAll()
                   <p>Storing amounts as cents is not immediately obvious without separators in literals</p>
                   <div class="fragment">
                   <p>Example with fixed-point arithmetic using integers</p>
-                  <pre><code data-line-numbers="2|3,4">
+                  <pre><code data-line-numbers="2|3,4,5">
 const FEE = 12300; //12,300? Or 123, because it's in cents?
-const AMOUNT = 1234500; // 1,234,500? Or cents, hence 12,345?
+const AMOUNT = 1234500; // 1,234,500?
+// Or cents, hence 12,345?
 // Or financial, 4-fixed 123.45?
                   </code></pre>
                   </div>
@@ -293,13 +307,13 @@ const AMOUNT = 1234500; // 1,234,500? Or cents, hence 12,345?
                   <section data-auto-animate id="NumericSeparators4">
                     <h1>Numeric Separators</h1>
                     <pre><code data-line-numbers="2|3|4|5|6|7|8|9">
-1_000_000_000           // billion
-101_475_938.38          // hundreds of millions
-let fee = 123_00;       // $123 (or 12300 cents)
-let fee = 12_300;       // $12,300 (1230000 cents)
-let amount = 12345_00;  // 12,345 (1234500 cents)
-let amount = 123_4500;  // 123.45 (4-fixed financial)
-0.000_001               // 1 millionth
+1_000_000_000 // billion
+101_475_938.38 // hundreds of millions
+let fee = 123_00; // $123 (or 12300 cents)
+let fee = 12_300; // $12,300 (1230000 cents)
+let amount = 12345_00; // 12,345 (1234500 cents)
+let amount = 123_4500; // 123.45 (4-fixed financ.)
+0.000_001 // 1 millionth
                 </code></pre>
                     </section>
 
