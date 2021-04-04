@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>ES2021</title>
+
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css">
+</head>
+<body>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <section id="title">
+          <h1>ES2021</h1>
+          <p class="fragment fade-up">Updated spec/standard document:
+			<a href="https://tc39.es/ecma262/">tc39.es/ecma262/</a></p>
+
+      <div class="fragment fade-down">
+      <h4 >I will provide a link to this presentation
+        at the end</h4>
+      </div>
+
+          <aside class="notes">
+            Hello everyone,
+            thank you for partecipating in this small presentation on
+            ecma script 2021!
+            <br>
+            1️⃣ Right now, you should be able to see the link to the updated specification document
+            . You can paste it in your browser but I think it's going to be pretty hard to follow along with that
+            📝
+          </aside>
+      
+        </section>
+
+	  <section id="after-title">
+          <h1>A Premise</h1>
+          <p class="fragment fade-up">Are we going to waste time learning features that might not get implemented in the language??</p>
+          <div class="fragment fade-up"><h2 class="fragment shrink">Nope!</h2></div>	
+          <aside class="notes">
+            This is a thing that I would like to explain straight away,
+            there are certain features that are really interesting but
+            are omitted in this presentation, because it's unsure
+            what is going to happen in the future.
+            <br>
+            <br>
+            📝
+          </aside>
+      </section>
+  
+      <section id="intro-points">
+        <h1>What are we learning then?</h1>
+        <img data-src="https://i.ibb.co/6ZTW8ZJ/tcc39.png" num="08" height="200px" id="test-img">
+        <p class="fragment fade-up">...but only the 
+          <a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">stage 4 proposals</a>
+          <p>New features released in 2020/2021</p>
+        </p>
+        <aside class="notes">
+          📝
+        </aside>
+      </section>
+
+
+      <section id="stage4">
+        <h1>What is a stage 4 proposal?</h1>
+        <div class="fragment">
+        <p>Stage 4 means indicates that:</p>
+        <ul>
+          <li>the feature is ready for inclusion in the ECMAScript standard</li>
+          <li>the feature will be included in the next standard revision</li>
+          <li>All changes caused by the implementation of the feature are integrated</li>
+        </ul>
+      </div>
+
+      <aside class="notes">
+        📝
+        <br><br>
+        hence we are 100% sure that what we will see today,
+        is going to be implemented in JS.
+      </aside>
+      </section>
+
+      <section data-auto-animate id="replaceAllIntro1">
+          <h2 style="text-transform: unset;">String.prototype.replaceAll()</h2>
+          <p class="fragment">...but let's just call it</p>
+          <aside class="notes">
+            📝
+          </aside>
+      </section>
+
+      <section data-auto-animate id="replaceAllIntro2">
+        <h2 style="text-transform: unset;">replaceAll()</h2>
+        <pre class="fragment"><code>
+          "string".replaceAll(pattern, replacement)
+                </code></pre>
+                <div class="fragment fade-down">
+                <h4>Browser Support</h4>
+                <img data-src="https://i.ibb.co/DMSP7tw/replace-All.png" num="08" height="200px" id="test-img">
+              </div>
+
+              <aside class="notes">
+                📝
+              </aside>
+      </section>
+
+
+      <section data-auto-animate id="replaceAll1">
+        <h1 style="text-transform: unset;">replaceAll()</h1>
+        <pre><code>
+  "string".replaceAll(pattern, replacement)
+        </code></pre>
+          <p class="fragment fade-down">The pattern can be a string or a RegExp</p>
+          <p class="fragment fade-down">The replacement can be a string or a function to be called for each match</p>
+          <pre class="fragment fade-down"><code>
+  "string".replaceAll(string|RegExp, string|function)
+          </code></pre>
+          <aside class="notes">
+            📝
+          </aside>
+      </section>
+
+      <section data-auto-animate id="replaceAll2">
+        <h1 style="text-transform: unset;">replaceAll()</h1>
+        <pre class="fragment fade-down"><code>
+  "string".replaceAll(pattern, replacement)
+        </code></pre>
+        <p class="fragment fade-down">The replaceAll() method returns a <b>new</b> string with all matches of the pattern replaced by a replacement</p>
+        <div class="fragment fade-down"><p class="fragment highlight-red">This method does not <b>mutate</b> the original string!</p></div>
+        <aside class="notes">
+          📝
+        </aside>
+      </section>
+
+
+      <section data-auto-animate id="replace1">
+        <p>Let's start with the old</p>
+        <h1 style="text-transform: unset;">string.replace()</h1>
+        <aside class="notes">
+          📝
+        </aside>
+      </section>
+
+      <section data-auto-animate id="replace2">
+        <h1 style="text-transform: unset;">string.replace()</h1>
+        <pre><code>
+
+const originalString = "hello";
+const replacedString = originalString.replace("l", "L");
+console.log(replacedString);
+
+          </code></pre>
+
+          <div class="fragment">
+          <h3>Logs:</h3>
+          <pre><code>"HeLlo"</code></pre>
+          </div>
+
+          <aside class="notes">
+            📝
+          </aside>
+      </section>
+
+      <section data-auto-animate id="replace3">
+        <h3>But the replace method will only replace the first occurence.</h3>
+        <h3 class="fragment">What if we want to replace both?</h3>
+        <aside class="notes">
+          📝
+        </aside>
+      </section>
+
+      <section data-auto-animate id="replace4">
+        <p>To replace a word globally inside a string, we generally used a global RegExp</p>
+        <pre><code>
+const string = "hello";
+const replacedString = string.replace(/l/g, "L");
+console.log(replacedString);
+                    </code></pre>
+
+                    <div class="fragment">
+                      <h3>Logs:</h3>
+                      <pre><code>"HeLLo"</code></pre>
+                      </div>
+
+      <p class="fragment">Turns out that we can do the same with replaceAll(), but without the global RegExp</p>
+      <aside class="notes">
+        📝
+      </aside>  
+    </section>
+      
+      <section data-auto-animate id="replaceAllRestarted1">
+      <h1 style="text-transform: unset;">replaceAll()</h1>
+      <pre><code>
+const string = "hello";
+const replacedString = string.replaceAll("l", "L");
+console.log(replacedString);
+      </code></pre>
+      <div class="fragment">
+        <h3>Logs:</h3>
+        <pre><code>"HeLLo"</code></pre>
+        </div>
+      <p class="fragment">Which should be faster than using a RegExp?</p>
+      <aside class="notes">
+        📝
+      </aside>
+      </section>
+
+
+      <section data-auto-animate id="replaceAllRestarted2">
+        <h1 style="text-transform: unset;">replaceAll()</h1>
+        <p>But it is really faster than using a RegExp??</p>
+        <div class="fragment">
+        <p>Turns out, at the moment, <b>not really</b>😭</p>
+        <img src="https://i.ibb.co/QQPkBzZ/www-measurethat-net-Benchmarks-Show-2396-0-replaceall-vs-regex-replace.png">
+        </div>
+        <div class="fragment">
+        <p >But that might change in the future...</p>
+        <p>Right, now .replace() is faster than .replaceAll()</p>
+        </div>
+
+        <aside class="notes">
+          📝
+        </aside>
+        </section>
+
+      
+      <section data-auto-animate id="replaceAllRestarted3">
+        <h1 style="text-transform: unset;">replaceAll()</h1>
+        <p>And when we provide a RegExp as pattern to replaceAll()</p>
+        <p>We have to set the global ("g") flag</p> 
+        <div class="fragment">
+        <p>Or we will get a <span class="hljs-keyword">TypeError</span>:</p>
+        <pre><code class="hljs-keyword">
+String.prototype.replaceAll called with a
+NON-GLOBAL RegExp argument
+at String.replaceAll()
+        </code></pre>
+        </div>
+
+        <aside class="notes">
+          📝
+        </aside>
+        </section>
+
+        <section data-auto-animate id="replaceAllRestarted3">
+          
+          <h1 style="text-transform: unset;">replaceAll()</h1>
+          <pre><code>
+                          Global RegExp!!
+  "string".replaceAll(string|𝚁̶𝚎̶𝚐̶𝙴̶𝚡̶𝚙̶, string|function)
+                    </code></pre>
+                    <aside class="notes">
+                      📝
+                    </aside>
+          </section>
+
+          <section data-auto-animate id="replaceAllRestarted4">
+            <h1 style="text-transform: unset;">replaceAll()</h1>
+            <p>So why bothering using/learing it?</p>
+            <p class="fragment">It's easier to read and performance might change in the future 🤷</p>
+            </section>
+
+            <section id="NumericSeparators">
+              <h1>Numeric Separators</h1>
+              <p class="fragment">This feature enables us to have more readable numbers.</p>
+              <p class="fragment">Large numeric literals are difficult for the human eye to parse quickly, especially when there are long digit repetitions</p>
+              </section>
+
+              <section data-auto-animate id="NumericSeparators2">
+                <h1>Numeric Separators</h1>
+                <h3>Why?</h3>
+                <pre><code>
+1000000000 // A billion or hundred millions? Hard to tell...
+            </code></pre>
+                </section>
+
+                <section data-auto-animate id="NumericSeparators3">
+                  <h3>Numeric Separators</h3>
+                  <p>Storing amounts as cents is not immediately obvious without separators in literals</p>
+                  <div class="fragment">
+                  <p>Example with fixed-point arithmetic using integers</p>
+                  <pre><code data-line-numbers="2|3,4">
+const FEE = 12300; //12,300? Or 123, because it's in cents?
+const AMOUNT = 1234500; // 1,234,500? Or cents, hence 12,345?
+// Or financial, 4-fixed 123.45?
+                  </code></pre>
+                  </div>
+                  </section>
+
+                  <section data-auto-animate id="NumericSeparators4">
+                    <h1>Numeric Separators</h1>
+                    <pre><code data-line-numbers="2|3|4|5|6|7|8|9">
+1_000_000_000           // billion
+101_475_938.38          // hundreds of millions
+let fee = 123_00;       // $123 (or 12300 cents)
+let fee = 12_300;       // $12,300 (1230000 cents)
+let amount = 12345_00;  // 12,345 (1234500 cents)
+let amount = 123_4500;  // 123.45 (4-fixed financial)
+0.000_001               // 1 millionth
+                </code></pre>
+                    </section>
+
+                    <section id="NumericSeparators5">
+                      
+                      <h3>Binary</h3>
+<pre><code>
+  const BINARY = 0b1010_0001_1000_0101; 
+
+</code></pre>
+<div class="fragment">
+                    <h3>Hex</h3>
+<pre><code>
+  const HEX = 0xA0_B0_C0;
+
+</code></pre>
+</div>
+<div class="fragment">
+<h3>BigInt or Octal</h3>
+<pre><code>
+  const BIGINT = 1_000_000_000_000n;
+
+</code></pre>
+</div>
+                      </section>
+
+                      <section  data-auto-animate id="NumericSeparators6">
+                        <h1>Numeric Separators</h1>
+<p>This feature is designed to have no impact on the interpretation semantics of numeric literals!<br>
+   Underscores are <b>ignored</b> by interpreters and will have no effect.</p>
+   <p class="fragment">They are meant exclusively as a <b>visual clue to help understand</b></p>
+                        </section>
+                          
+                        <section  data-auto-animate id="NumericSeparators7">
+                          <h1>Numeric Separators</h1>
+                          <h3>General errors</h3>
+                          <pre><code data-line-numbers="2|3|4|5|6|7">
+  1__000 // Invalid two underscores!
+  _143 // Invalid as number but valid variable name!!
+  3_.141 // Invalid, coming after the dot!
+  0_b111111000 // Invalid
+  0b_111111000 // Invalid    
+  1_000_000_n; // Invalid BigInt
+                
+                          </code></pre>
+                          </section>
+
+                          <section  data-auto-animate id="NumericSeparators8">
+                            <h1>Numeric Separators</h1>
+                            <h3>Rules</h3>
+  <ul>
+    <li class="fragment hljs-keyword">No leading or trailing separator.</li>
+    <li class="fragment hljs-keyword">No multiple adjacent separator.</li>
+    <li class="fragment hljs-keyword">No separator adjacent to decimal point.</li>
+    <li class="fragment hljs-keyword">No separator adjacent to ExponentIndicator.</li>
+    <li class="fragment hljs-keyword">No separator adjacent to 0b, 0B, 0o, 0O, 0x, 0X.</li>
+  </ul>                         
+                            </section>
+
+
+                          <section data-auto-animate id="NumericSeparators9">
+                            <h1>Numeric Separators</h1>
+                            <h3>Bad Ideas</h3>
+    <p>Those are not considered errors by the compiler, but probably not good ideas</p>
+    <pre><code data-line-numbers="2|3|4">
+ const BADFORMAT = 10_00_00_00; 
+ const PHONENUMBER = 0034_661_898_975
+ const CREDITCARD = 378_2822_4631_0005 
+    </code></pre>
+  </section>
+
+
+
+  <section data-auto-animate id="LogicalAssignmentOperators1">
+    <h3>Logical Assignment Operators</h3>
+    <p>Inspired by Ruby</p>
+    <p class="fragment">Again, another functionality that doesn't really add anything new to the language 🤷</p>
+    <p class="fragment">So why bothering learning it?</p>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators2">
+  <h3>Logical Assignment Operators</h3>
+  <p>Advantages:</p>
+  <ul>
+    <li>Better performance</li>
+    <li>Expressive code</li>
+    <li>Shorter to type</li>
+  </ul>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperatorsBS">
+  <h3>Logical Assignment Operators</h3>
+  <h4>Browser Support</h4>
+  <img data-src="https://i.ibb.co/rFNB8qs/developer-mozilla-org-en-US-docs-Web-Java-Script-Reference-Operators-Logical-OR-assignment.png" height="200px">
+</section>
+
+
+
+
+<section data-auto-animate id="LogicalAssignmentOperators3">
+  <p>But before the</p>
+  <h3>Logical Assignment Operators</h3>
+  <p>Let's have a refresh on...</p>
+  <h2>JS short-circuit evaluation</h2>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators4">
+  <h2>JS short-circuit evaluation</h2>
+  <h3>OR Operator</h3>
+  <div class="fragment">  <pre><code>const x = false;
+    console.log(x || "aString");
+      </code></pre>
+    </div>
+
+      <div class="fragment">
+        <h3>Logs:</h3>
+        <pre><code>"aString"</code></pre>
+        </div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators5">
+  <h2>JS short-circuit evaluation</h2>
+  <h3>AND Operator</h3>
+  <pre><code>const x = false;
+    console.log(x && "aString");
+      </code></pre>
+      <div class="fragment">
+        <h3>Logs:</h3>
+        <pre><code>false</code></pre>
+        </div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators6">
+  <h2>JS short-circuit evaluation</h2>
+  <h3>Nullish Coalescing Operator</h3>
+  <pre><code>const x = false;
+    console.log(x ?? "aString");
+      </code></pre>
+      <div class="fragment">
+        <h3>Logs:</h3>
+        <pre><code>false</code></pre>
+        </div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators7">
+  <h2>Logical Assignment Operators</h2>
+  <p>Now we are able to assign with by appeding the equal sign at the end after
+    the short-circuit evaluation
+  </p>
+  <div class="fragment">
+  <p>&&&nbsp;&nbsp;&nbsp;&nbsp;➡&nbsp;&nbsp;&nbsp;&nbsp;&&=</p>
+  <p>||&nbsp;&nbsp;&nbsp;&nbsp;➡&nbsp;&nbsp;&nbsp;&nbsp;||=</p>
+  <p>??&nbsp;&nbsp;&nbsp;&nbsp;➡&nbsp;&nbsp;&nbsp;&nbsp;??=</p>
+  </div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators8">
+  <h3>...This is the same concept that we already had with numbers</h3>
+  <h4>Math Assignment Operator</h4>
+  <div class="fragment">
+    <pre><code>let number = 0;
+number += 1; // aka number = number + 1;
+          </code></pre>
+...Now we can apply it to the Logical Assignment Operators
+</div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators9">
+  <h3>Logical OR assignment</h3>
+  <div class="fragment">  <pre><code>let x = false;
+x ||= "aString";
+console.log(x);
+      </code></pre>
+    </div>
+      <div class="fragment">
+        <h3>Logs:</h3>
+        <pre><code>"aString"</code></pre>
+        <p>Only assigns if x is falsy.</p>
+        </div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators10">
+  <h3>Logical AND assignment</h3>
+  <div class="fragment">  <pre><code>let x = false;
+x &&= "aString";
+console.log(x);
+      </code></pre>
+    </div>
+      <div class="fragment">
+        <h3>Logs:</h3>
+        <pre><code>false</code></pre>
+        <p>only assigns if x is truthy.</p>  
+      </div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators11">
+  <h3>Logical Nullish assignment</h3>
+  <div class="fragment">  <pre><code>let x = false;
+x ??= "aString";
+console.log(x);
+      </code></pre>
+    </div>
+      <div class="fragment">
+        <h3>Logs:</h3>
+        <pre><code>false</code></pre>
+        <p>Only assigns if x is null or undefined.</p>  
+      </div>
+</section>
+
+<section data-auto-animate id="LogicalAssignmentOperators12">
+  <h3>Logical Nullish assignment</h3>
+  <div class="fragment"><pre><code>let x = false;
+x ??= "aString";
+console.log(x);
+      </code></pre>
+      <h3>Is the same as writing:</h3>
+    </div>
+
+  <div class="fragment">
+        <pre><code>let x = false;
+if (x === null || x === undefined) {
+  x = "aString";
+}
+console.log(x);</code></pre>
+</div>   
+</section>
+
+
+
+
+<section id="promiseAny">
+  <h1 style="text-transform: none;">Promise.any()</h1>
+  <p>🎉Finally a new feature that adds something to the language!🎉</p>
+</section>
+
+<section data-auto-animate id="promiseAnyBS">
+  <h1 style="text-transform: none;">Promise.any()</h1>
+  <h4>Browser Support</h4>
+  <img data-src="https://i.ibb.co/2ZmbjmG/developer-mozilla-org-en-US-docs-Web-Java-Script-Reference-Global-Objects-Promise-any.png" height="200px">
+</section>
+
+
+
+<section data-auto-animate id="promiseAny1">
+  <h1 style="text-transform: none;">Promise.any()</h1>
+  <p>any() is a new method</p>
+  <p>of the Promise class available in JS</p>
+  <p class="fragment">Why do we need it?</p>
+</section>
+
+<section data-auto-animate id="promiseAny2">
+  <h1 style="text-transform: none;">Promises</h1>
+  <p>Before any() we would probably have used one of the three methods</p>
+  <ul class="fragment">
+  <li>Promise.all()</li>
+  <li>Promise.allSettled()</li>
+  <li>Promise.race()</li>
+</ul>
+</section>
+
+<section data-auto-animate id="promiseAny3">
+  <div class="my-badge">
+    <h1 style="text-transform: none;">Promise.all()</h1>
+    <span>"short-circuit" evaluation</span>
+  </div>
+  
+  <div class="fragment">
+    <pre><code>Promise.all([p1,p2,p3])</code></pre>
+</div>
+<div class="fragment">
+<p>Wait for all, reject even if just 1 fails</p>
+</div>
+</section>
+
+<section data-auto-animate id="promiseAny4">
+  <div class="my-badge">
+    <h1 style="text-transform: none;">Promise.allSettled()</h1>
+    <span class="red">NO "short-circuit" evaluation</span>
+  </div>
+  <div class="fragment">
+    <pre><code>Promise.allSettled([p1,p2,p3])</code></pre>
+</div>
+<div class="fragment">
+<p>Wait for all, <b>never</b> rejects</p>
+<p>Retuns an array of objects (one object for each promise)</p>
+<p>Each object describes the outcome of each promise</p>
+</div>
+</section>
+
+<section data-auto-animate id="promiseAny5">
+  <div class="my-badge">
+    <h1 style="text-transform: none;">Promise.race()</h1>
+    <span>"short-circuit" evaluation</span>
+  </div>
+  <div class="fragment">
+    <pre><code>Promise.race([p1,p2,p3])</code></pre>
+</div>
+<div class="fragment">
+<p>Just give me the first one that fulfills or rejects</p>
+<p>Retuns an array of objects (one object for each promise)</p>
+<p>Each object describes the outcome of each promise</p>
+</div>
+</section>
+
+<section data-auto-animate id="promiseAny6">
+  <div class="my-badge">
+    <h1 style="text-transform: none;">Promise.any()</h1>
+    <span>"short-circuit" evaluation</span>
+  </div>
+  <div class="fragment">
+    <pre><code>Promise.any([p1,p2,p3])</code></pre>
+</div>
+<div class="fragment">
+<p>MDN describes it like the opposite of Promise.all()</p>
+<p>Returns the first Promise that resolves</p>
+<p>If no promise fulfills, it will throw an <span class="hljs-keyword">AggregateError</span></p>
+</div>
+</section>
+
+<section data-auto-animate id="promiseAny7">
+  <h1 style="text-transform: none;"><span class="hljs-keyword">AggregateError</span></h1>
+<div class="fragment">
+<p>AggregateError is an object (specifically a Well-Known Intrinsic Object) that holds several errors</p>
+<p class="fragment">It will be thrown by default by Promise.any
+  when no promise in the array of promises fulfills
+</p>
+<p class="fragment">But we can also throw it ourselves!</p>
+</div>
+</section>
+
+  <section data-auto-animate id="promiseAnyAggErrBS">
+    <h1 style="text-transform: none;"><span class="hljs-keyword">AggregateError</span></h1>
+    <h4>Browser Support</h4>
+    <img data-src="https://i.ibb.co/KwshkWz/developer-mozilla-org-en-US-docs-Web-Java-Script-Reference-Global-Objects-Aggregate-Error.png" height="200px">
+  </section>
+
+  <section data-auto-animate id="promiseAny8">
+    <h1 style="text-transform: none;"><span class="hljs-keyword">AggregateError</span></h1>
+    <p>Promise.any()</p>
+    <div>
+      <pre>
+<code>Promise.any([ Promise.reject(new Error("my error")) ])
+  .catch(err => {
+  console.log(err instanceof AggregateError); // true
+  console.log(err.message); // "All Promises rejected"
+  console.log(err.name); // "AggregateError"
+  console.log(err.errors); // [ Error: "my error" ]
+});</code></pre>
+  </div>
+  </section>
+
+  <section data-auto-animate id="promiseAny9">
+    <h1 style="text-transform: none;"><span class="hljs-keyword">AggregateError</span></h1>
+    <p>Throw your AggregateError</p>
+    <div>
+      <pre>
+<code>try {
+  throw new AggregateError([new Error("some error")], 'Hello');
+} catch (e) {
+  console.log(e instanceof AggregateError); // true
+  console.log(e.message); // "Hello"
+  console.log(e.name); // "AggregateError"
+  console.log(e.errors); // [ Error: "some error" ]
+}</code></pre>
+  </div>
+  </section>
+
+  <section data-auto-animate id="promiseAny10">
+    <h1 style="text-transform: none;">Promises</h1>
+    <p>the 4 Promises Combinators:</p>
+    <div style="border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;" class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>description</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="#"><code>Promise.all()</code></a></td>
+          <td>short-circuits when an input value is rejected</td>
+          <td>added in ES2015</td>
+        </tr>
+        <tr>
+          <td><a href="#"><code>Promise.race()</code></a></td>
+          <td>short-circuits when an input value is settled</td>
+          <td>added in ES2015</td>
+        </tr>
+        <tr>
+          <td><a href="#"><code>Promise.allSettled()</code></a></td>
+          <td>does not short-circuit</td>
+          <td><a href="https://github.com/tc39/proposal-promise-allSettled">added in ES2020</a></td>
+        </tr>
+        <tr>
+          <td><a href="#"><code>Promise.any()</code></a></td>
+          <td>short-circuits when an input value is fulfilled</td>
+          <td><a href="https://github.com/tc39/proposal-promise-any">Stage 4 (scheduled for ES2021)</a></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </section>
+
+    <section data-auto-animate id="WeakRefs">
+     <h1>WeakRefs</h1>
+     <p>...and FinalizationRegistry</p>
+     <p class="fragment">A very controvertial feature</p>
+     <p class="fragment">So controvertial that is W3G suggests not to use it at all</p>
+     <p class="fragment">Garbage collectors are complicated and the timing of garbage collection is different in different user agents</p>
+
+     <aside class="notes">
+       📝<br>
+       The World Wide Web Consortium is the main international standards organization for the World Wide Web<br>
+       The timing of garbage collection is different in different user agents,
+       and may change over time as user agents work on improving performance.
+       If an API exposes the timing of garbage collection,
+       it can cause programs to behave differently in different contexts.
+       This means that devs will need to write extra code to handle these differences.
+     </aside>  
+      </section>
+
+
+      <section data-auto-animate id="WeakRefs2">
+        <h1>WeakRefs</h1>
+        <p>So we won't spend too much time on this feature</p>
+        <div class="fragment">
+        <p>Well, at least now too much on the new WeakRefs...</p>
+        <p>But we can refresh the other weak references that JS offers us from ES6</p>
+      </div>
+   
+        <aside class="notes">
+          📝<br>
+          Anyone knows the other weak references that I am referring to?
+        </aside>  
+         </section>
+
+         <section data-auto-animate id="WeakRefs3">
+          <h1>WeakSet and WeakMap</h1>
+          <p>Weak but smarter ways (if applicable) of implementing the Set and Map object</p>
+     
+          <aside class="notes">
+            📝<br>
+
+          </aside>  
+           </section>
+
+           <section data-auto-animate id="WeakRefs4">
+            <h1>ES6 Set</h1>
+            <p>The Set object lets you store <b style="text-decoration: underline;">unique values</b>
+              of any type, whether primitive values or object references.</p>
+            <p class="fragment">Just like an array, but the array may store multiple time the same value</p>
+            <aside class="notes">
+              📝<br>
+  
+            </aside>  
+             </section>
+
+
+             <section data-auto-animate id="WeakRefs5">
+              <h1>Set</h1>
+                <pre><code data-line-numbers="1,2|1,2,4,5,6">const arr = [1,1];
+const set = new Set(arr);
+
+for (entry of set) {
+  console.log(entry);
+}
+
+</code></pre>
+                <div class="fragment">
+                  <h3>Logs:</h3>
+                  <pre><code>1</code></pre>
+                </div>
+              <aside class="notes">
+                So when know that for accessing an element in the array
+                we go by position/order. In a set, we don't have order,
+                hence we cannot access items by position/order.
+                what do you think will log?<br>
+                it logs 1, therefore the position doesn't mean anything inside a Set
+                if the value exists, you are going to retrieve it, and there is Only
+                one occurence hence it doesn't matter to us the chronological order.
+              </aside>  
+               </section>
+
+
+
+               <section data-auto-animate id="WeakRefs6">
+                <h1>WeakSet</h1>
+                <pre><code>const arr = [1,1];
+const weakSet = new WeakSet(arr);
+
+for (entry of weakSet) {
+  console.log(entry);
+}</code></pre>
+                  <div class="fragment">
+                    <h3>Logs:</h3>
+                    <pre><code class="hljs-keyword">TypeError: Invalid value used in weak set</code></pre>
+                  </div>
+                <aside class="notes">
+   What changes if we swap that set to a weakset?
+   What do you think we will see with the same code but with a weakset?
+                </aside>  
+                 </section>
+
+    
+                 <section data-auto-animate id="WeakRefs7">
+                  <h1>WeakSet</h1>
+                  <p>Why the error?</p>
+                  <div class="fragment">
+                    Weak references (WeakSet, WeakMap, WeakRef) may only store <b style="text-decoration: underline;">Objects</b>
+                  </div>
+                  <div class="fragment">
+                    Only for Objects JS is able to garbage collect in a predictable manner
+                  </div>
+                  <aside class="notes">
+                    📝<br>
+                    📝<br>
+                    Seems a bit lame as an explaination.
+                    We can't know whether Primitives are garbage collected or not, because the specification allows both
+                    GC them and not GC collect them.
+                    JavaScript variables, however, are not typed like Ts or Java variables are typed.
+                    in JS variables can change their types during execution and that complicates things a lot
+                  </aside>  
+                   </section>
+
+                   <section data-auto-animate id="WeakRefs8">
+                    <h1>WeakSet</h1>
+                    <p>...The set that holds only objects</p>
+                    <p class="fragment">By using a WeakSet we allow JS to clean up unused objects</p>
+                    <p class="fragment">As long as use an object in the code, it won't be deleted</p>
+                    <aside class="notes">
+                      📝<br>
+                      we are protected
+                      📝 but if don't use, we don't care and may save up some memory
+                    </aside>  
+                     </section>
+
+
+                     <section data-auto-animate id="WeakRefs9">
+                      <h1>WeakSet</h1>
+                      <pre><code> const weakSet = new WeakSet([{a: 1}]);
+ for (entry of weakSet) {
+   console.log(entry);
+ }</code></pre>
+                        <div class="fragment">
+                          <h3>Logs:</h3>
+                          <pre><code class="hljs-keyword">TypeError: set[Symbol.iterator] is not a function</code></pre>
+                        </div>
+                      <aside class="notes">
+What do you think we will see?
+                      </aside>  
+                       </section>
+
+
+
+
+                       <section data-auto-animate id="WeakRefs10">
+                        <h1>WeakSet</h1>
+                        <p>What are Symbols?</p>
+                        <div class="fragment">
+                          Symbols are part of meta programming tools introduced by ES6<br>
+                          (togheter with the Proxy and Reflect API)
+                        </div>
+                        <div class="fragment">
+                          Symbols are a new primitive type that provides a unique identifier
+                        </div>
+                        <aside class="notes">
+                          📝<br>📝<br>
+                          Symbols are a new primitive type like boolean or string
+                        </aside>  
+                         </section>
+
+                         <section data-auto-animate id="WeakRefs11">
+                          <h1>Symbol</h1>
+                          <p>But I guess Symbols are a topic for another time</p>
+                          <div class="fragment">
+                            Let's just focus on the error on the [Symbol.iterator]
+                          </div>
+                          <div class="fragment">
+                            [Symbol.iterator] is what makes an object iterable
+                          </div>
+                          <aside class="notes">
+                            📝<br>📝<br>
+                            Arrays have their own symbol iterator
+                            JS checks the [Symbol.iterator] to understand if we can loop over it!
+                            Without symbol iterator JS would not know if the thing you want to loop for has the required logic to do so!
+                          </aside>  
+                           </section>
+
+                           <section data-auto-animate id="WeakRefs12">
+                            <h1>[Symbol.iterator]</h1>
+                            <pre><code> const array = [1,2,3]; 
+ const iterator = array[Symbol.iterator](); 
+ console.log(iterator.next()); </code></pre>
+<div class="fragment">
+  <h3>Logs:</h3>
+  <pre><code>{ "value": 1, "done": false }</code></pre>
+</div>
+
+                            <aside class="notes">
+                              📝
+                            </aside>  
+                             </section>
+
+                             <section data-auto-animate id="WeakRefs13">
+                              <h1>[Symbol.iterator]</h1>
+                              <pre><code> const array = [1,2,3];
+ const iterator = array[Symbol.iterator]();
+
+ console.log(iterator.next());
+ console.log(iterator.next());
+ console.log(iterator.next());
+ console.log(iterator.next());
+  </code></pre>
+  <div class="fragment">
+    <h3>Logs:</h3>
+    <pre><code> { "value": 1, "done": false }
+ { "value": 2, "done": false }
+ { "value": 3, "done": false }
+ { "done": true }</code></pre>
+  </div>
+  
+                              <aside class="notes">
+                                📝📝
+                                So the iterator is a function that has the logic on how to access a collection,<br>
+                                That means that we can also create our own iterators and our iterators logic
+                              </aside>  
+                               </section>
+
+
+
+                               <section data-auto-animate id="WeakRefs14">
+                                <h1>[Symbol.iterator]</h1>
+                                <pre><code class="hljs-keyword">TypeError: set[Symbol.iterator] is not a function</code></pre>
+                                <p class="fragment">Next time we see this error, we know that we are trying to iterate an object that 
+                                  does not have the iterator
+                                </p>
+    
+                                <aside class="notes">
+                                </aside>  
+                                 </section>
+
+
+                                 <section data-auto-animate id="WeakRefs15">
+                                  <h1>WeakSet</h1>
+                                  <pre><code>const weakSet = new WeakSet([{a: 1}]);</code></pre>
+                                  <div>
+                                    <ul><li>Not Enumerable, We don't know the lenght of it!</li></ul>
+                                  </div>
+                                  <aside class="notes">
+                                    Why is not Enumerable? Because JS will clean/delete some values, that's the point the weak reference right?
+                                    Hence we cannot loop it
+                                  </aside>  
+                                   </section>
+
+
+
+                                   <section data-auto-animate id="WeakRefs16">
+                                    <h1>WeakSet</h1>
+                                    <pre><code>const weakSet = new WeakSet([{a: 1}]);
+console.log(set.has({a: 1}));
+                                    </code></pre>
+                                    <div class="fragment">
+                                      <h3>Logs:</h3>
+                                      <pre><code>false</code></pre>
+                                    </div>
+                                    <aside class="notes">
+                                     But just like the set, we have the methods has(), add() and delete()
+                                    </aside>  
+                                     </section>
+
+                                     <section data-auto-animate id="WeakRefs17">
+                                      <h1>WeakSet</h1>
+                                      <p>Objects are references based!</p>
+                                      <div class="fragment">
+                                        <pre><code>const obj1 = {a: 1};
+const obj2 = {a: 1};
+
+console.log(obj1 == obj2);</code></pre>
+
+<div class="fragment">
+  <h3>Logs:</h3>
+  <pre><code>false</code></pre>
+                                      </div>
+                                       </section>
+
+
+                                       <section data-auto-animate id="WeakRefs18">
+                                        <h1>WeakSet</h1>
+                                        <p>Objects are references based!</p>
+                                        <div class="fragment">
+                                          <pre><code>new WeakSet([{a: 1}, {a: 1}]);</code></pre>
+  <div class="fragment">The Weakset will hold both objects!!</div>
+                                         </section>
+
+                                         <section data-auto-animate id="WeakRefs19">
+                                          <h1>WeakSet</h1>
+                                          <pre><code data-trim data-noescape>const obj1 = {a: 1};
+const obj2 = {b: 2};
+const weakSet = new WeakSet([obj1, obj2]);
+
+<mark class="console">console</mark>.log(weakSet.has(obj1));
+console.log(weakSet.has(obj2));</code></pre>
+<div class="fragment">
+  <h3>Logs:</h3>
+  <pre><code>true
+true</code></pre></section>
+
+
+<section data-auto-animate id="WeakRefs19">
+  <h1>ES6 Map</h1>
+  <p>The Map object holds key-value pairs
+    and remembers the original insertion order of the keys.
+    Any value (both objects and primitive values) may be used as either a key or a value.</p>
+</section>
+
+<section data-auto-animate id="WeakRefs20">
+  <h1>ES6 Map</h1>
+  <pre><code>let cardAS = {
+  name: 'Ace of Spades'
+}
+
+let cardJH = {
+  name: 'Jack of Hearts'
+}
+
+const cardDeck = new Map();
+cardDeck.set('AS', cardAS);
+cardDeck.set('JH', cardJH);
+
+console.log(cardDeck.size);</code></pre>
+</section>
+
+<section data-auto-animate id="WeakRefs21">
+  <h1>ES6 Map Methods</h1>
+  <pre><code>console.log(cardDeck.get('JH')); ➡️ { "name": "Jack of Hearts" } 
+    
+for (let key of cardDeck.keys()) {
+  console.log(key);
+} ➡️ "AS", "JH"
+
+for (let value of cardDeck.values()) {
+  console.log(value);
+} ➡️ { "name": "Ace of Spades" }, { "name": "Jack of Hearts" }
+
+for (let key of cardDeck) {
+  console.log(key);
+} ➡️ [ "AS", { "name": "Ace of Spades" } ],
+  ➡️ [ "JH", { "name": "Jack of Hearts" } ]</code></pre>
+
+  <aside class="notes">
+    📝
+    last method of looping is the same as using cardDeck.entries(),
+    they work in the same way. Since the .entries() version is more verbose
+    is not reccomended to use it
+     </aside>
+</section>
+
+
+<section data-auto-animate id="WeakRefs22">
+  <h1>WeakMap</h1>
+    <p>The WeakMap object is a collection of key/value pairs in which the keys are weakly referenced.
+      The keys must be objects and the values can be arbitrary values.</p>
+      <p class="fragment">Keys of WeakMaps are of the type <b style="text-decoration: underline;">Object</b> only. Primitive data types as keys are not allowed.</p>
+      <aside class="notes">
+        📝
+        read then <br>
+        Because the references are weak, WeakMap keys are not enumerable. There is no method to obtain a list of the keys. If there was,
+         the list would depend on the state of garbage collection, introducing non-determinism.
+         </aside>
+    </section>
+
+
+    <section data-auto-animate id="WeakRefs23">
+      <h1>WeakMap</h1>
+     <pre><code>let cardAS = {
+  name: 'Ace of Spades'
+}
+
+let cardJH = {
+  name: 'Jack of Hearts'
+}
+
+const cardDeck = new WeakMap();
+cardDeck.set('AS', cardAS);</code></pre>
+<div class="fragment">
+<h3>Logs:</h3>
+<pre><code class="hljs-keyword">TypeError: Invalid value used as weak map key at WeakMap.set()</code></pre>
+</div>
+        </section>
+
+
+        <section data-auto-animate id="WeakRefs24">
+          <h1>WeakMap</h1>
+          <p>As we said before, the key has to be an <b style="text-decoration: underline;">Object</b></p>
+          <p class="fragment">But why we have to use an object as key? Isn't it weird to you?</p>
+          <p class="fragment">NO, it's should not be weird to you.</p>
+          <p class="fragment">
+            Only for Objects JS is able to garbage collect in a predictable manner! <br>
+            Hence Weak references (WeakSet, WeakMap, WeakRef) may only store <b style="text-decoration: underline;">Objects</b></p>
+          </section>
+
+          <section data-auto-animate id="WeakRefs25">
+            <h1>WeakMap</h1>
+            <p>A WeakMap will:
+              <ul><li>
+                automatically identify which objects are not in use anymore
+              </li>
+              <li>delete those objects hence free some space in memory</li></ul></p>
+            <p class="fragment">If you add those objects to an object or an array (or a Map) they will always live in memory.<br>
+              JS will never identify if they are still in use, so they will be always kept in memory.
+            </p>
+              <aside class="notes">
+                "A weak map will automatically identify..." that is GC in JS!
+              </aside>
+            </section>
+
+
+            <section data-auto-animate id="WeakRefs26">
+              <h1>WeakMap</h1>
+              <p>WeakMaps (like any WeakRef) is not Enumerable</p>
+              <div class="fragment">
+              <p>Why? because we don't know the size of it!</p>
+              <p>Some items might be deleted at any point!</p>
+            </div>
+              <p class="fragment">We can't loop over a WeakMap, we can only retrieve items by key</p>
+              <aside class="notes">
+                🔚 How can I be sure that the item I am going to retrieve is not already deleted by JS?
+                <br> Because, you are using it. As long as you use it, GC won't delete it.
+              </aside>
+              </section>
+
+              <section data-auto-animate id="WeakRefs27">
+                <h1>WeakMap</h1>
+                <pre><code>const weakMap = new WeakMap();
+const weakMapKey = {};
+weakMap.set(weakMapKey, 'aString');
+console.log(weakMap.get(weakMapKey));</code></pre>
+        <div class="fragment">
+          <h3>Logs:</h3>
+          <pre><code>"aString"</code></pre>
+        </div>
+
+        <aside class="notes">
+          🔚 Weakmap.clear method has been deprecated. I suggest you to re-assign your WeakMap to a new one instead.
+        </aside>
+                </section>
+       
+
+                <section data-auto-animate id="WeakRefs28">
+                  <h1>WeakRefs</h1>
+                 <p>In JS, as long as we have an object with a reference somewhere,<br>
+                  we keep that object in memory.</p>
+                  <p class="fragment">With WeakRefs, we can create an object and not force it to stay in memory</p>
+                  <p class="fragment">Hence at some point the Garbage Collection might delete it</p>
+          <aside class="notes">
+            We are here again in a feature that is not supposed to be used.
+          </aside>
+                  </section>
+
+                  <section data-auto-animate id="WeakRefs29">
+                    <h1>Finalizers</h1>
+                   <p>Finalization is the execution of code after an object that has become unreachable to program execution (aka the GC deleted it)</p>
+                    <p class="fragment">It can be used like a lifecycle hook (like a callback function) that is called after the deletion of the object</p>
+            <aside class="notes">
+              🔚  can help prevent memory leaks when managing resources that the garbage collector doesn't know about.
+              for example, hey GC after deleting my weakReferenced object, please delete some other variables.
+            </aside>
+                    </section>
+
+                    <section data-auto-animate id="WeakRefs30">
+                      <h1>Issues with WeakRefs and Finalizers</h1>
+                     <p>GC logic is tricky and should always be avoided at all cost</p>
+                     <p class="fragment">The spec allows conforming implementations to skip calling finalization callbacks for any reason or no reason!</p>
+              <aside class="notes">
+               WeakMap and WeakSets are perfect, we can use them and they offer a lot of Advantages.<br>
+               WeakRefs and Finalizers However, have many problems, hence they should always be used as the last resort or for debugging purposes <br>
+               GC can be invoked at unexpected times, or not at all - for example, GC is not invoked when closing a browser tab or on process exit <br>
+               The GC decides to scan the heap of the memory when it thinks that it is necessary, usually after some percentage of memory allocation<br>
+               Finalizable objects memory allocation is invisible to the GC. 
+               Hence the actual resource usage of a system with finalizable objects is higher than what the GC thinks it is.
+              </aside>
+                      </section>
+
+      <section>
+        <section>
+          <h1>The End</h1>
+            <p>Any Questions?</p>
+            <aside class="notes">
+              Well, that is all I have for today. <br>
+             </aside>
+            
+        </section>
+        
+        <section>
+          <h3>References</h3>
+          <ul>
+            <li> <a href="google.com">Google</a></li>
+          </ul>
+        </section>
+      </section>
+    </div>
+  </div>
+  
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+
+    <script>
+var cdn = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/';
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+// RevealMarkdown
+            plugins: [RevealHighlight, RevealNotes]
+        });
+    </script>
+
+</body>
+
+</html>
