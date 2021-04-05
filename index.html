@@ -432,6 +432,11 @@ let amount = 123_4500; // 123.45 (4-fixed financ.)
         <h3>Logs:</h3>
         <pre><code>"aString"</code></pre>
         </div>
+
+        <aside class="notes">
+          🔚 if the left side of the expression is falsy,
+          return the right side of the expression
+        </aside>
 </section>
 
 <section data-auto-animate id="LogicalAssignmentOperators5">
@@ -444,6 +449,11 @@ let amount = 123_4500; // 123.45 (4-fixed financ.)
         <h3>Logs:</h3>
         <pre><code>false</code></pre>
         </div>
+        <aside class="notes">
+          🔚 if the left side of the expression is falsy,
+          return it. if the left side of the expression is truthy,
+          return the right side.          
+        </aside>
 </section>
 
 <section data-auto-animate id="LogicalAssignmentOperators6">
@@ -456,6 +466,16 @@ let amount = 123_4500; // 123.45 (4-fixed financ.)
         <h3>Logs:</h3>
         <pre><code>false</code></pre>
         </div>
+
+        <aside class="notes">
+          🔚 if the left side of the expression is null or undefined,
+          return the right side of the expression.
+          
+          here the difference between nullish and falsy:
+          nullish is either null or undefined <br>
+          while falsy is nullish + "" + false + NaN
+        </aside>
+
 </section>
 
 <section data-auto-animate id="LogicalAssignmentOperators7">
