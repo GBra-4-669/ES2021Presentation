@@ -67,7 +67,7 @@
       <section id="stage4">
         <h1>What is a stage 4 proposal?</h1>
         <div class="fragment">
-        <p>Stage 4 means indicates that:</p>
+        <p>Stage 4 indicates that:</p>
         <ul>
           <li>the feature is ready for inclusion in the ECMAScript standard</li>
           <li>the feature will be included in the next standard revision</li>
@@ -76,7 +76,7 @@
       </div>
 
       <aside class="notes">
-        📝
+        🔚
         <br><br>
         hence we are 100% sure that what we will see today,
         is going to be implemented in JS.
@@ -380,8 +380,8 @@ let amount = 123_4500; // 123.45 (4-fixed financ.)
     <p>Those are not considered errors by the compiler, but probably not good ideas</p>
     <pre><code data-line-numbers="2|3|4">
  const BADFORMAT = 10_00_00_00; 
- const PHONENUMBER = 0034_661_898_975
- const CREDITCARD = 378_2822_4631_0005 
+ const PHONENUMBER = 0034_661_898_975;
+ const CREDITCARD = 378_2822_4631_0005; 
     </code></pre>
   </section>
 
@@ -495,10 +495,14 @@ let amount = 123_4500; // 123.45 (4-fixed financ.)
   <h4>Math Assignment Operator</h4>
   <div class="fragment">
     <pre><code>let number = 0;
-number += 1; // aka number = number + 1;
+number += 2; //
           </code></pre>
 ...Now we can apply it to the Logical Assignment Operators
 </div>
+<aside class="notes">
+  🔚 Number += is just like saying number = number + 2;
+</aside>
+
 </section>
 
 <section data-auto-animate id="LogicalAssignmentOperators9">
@@ -1072,6 +1076,7 @@ console.log(cardDeck.size);</code></pre>
 
 <section data-auto-animate id="WeakRefs21">
   <h1>ES6 Map Methods</h1>
+  <p>... to retrieve elements</p>
   <pre><code>console.log(cardDeck.get('JH')); ➡️ { "name": "Jack of Hearts" } 
     
 for (let key of cardDeck.keys()) {
