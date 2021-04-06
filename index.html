@@ -460,7 +460,7 @@ let amount = 123_4500; // 123.45 (4-fixed financ.)
   <h2>JS short-circuit evaluation</h2>
   <h3>Nullish Coalescing Operator</h3>
   <pre><code>const x = false;
-    console.log(x ?? "aString");
+console.log(x ?? "aString");
       </code></pre>
       <div class="fragment">
         <h3>Logs:</h3>
@@ -637,10 +637,32 @@ console.log(x);</code></pre>
 </div>
 <div class="fragment">
 <p>Just give me the first one that fulfills or rejects</p>
-<p>Retuns an array of objects (one object for each promise)</p>
-<p>Each object describes the outcome of each promise</p>
+<p class="fragment">A pending Promise that asynchronously yields and returns the value of the first promise in the given iterable to fulfill or reject.</p>
 </div>
 </section>
+
+<section data-auto-animate id="promiseAny5-bis">
+  <div class="my-badge">
+    <h1 style="text-transform: none;">Promise.race()</h1>
+    <span>Warnings ⚠️</span>
+  </div>
+
+  <p class="fragment">If we pass an empty array as the argument of Promise.race(),
+    the promise will be stuck pending forever.</p>
+    <div class="fragment">
+      <pre><code>const foreverPendingPromise = Promise.race([])</code></pre>
+  </div>
+  <p class="fragment">If we pass an array That contains one or more non-promise value(s)
+    and/or an already settled promise,
+    then Promise.race will resolve to the first of these values found in the array.<br>
+  Hence here the order matters!</p>
+    <div class="fragment">
+      <pre><code>Promise.race([Promise.resolve(5), Promise.resolve("aString")]);</code></pre>
+      <p>Will resolve with 5!</p>
+  </div>
+</section>
+
+
 
 <section data-auto-animate id="promiseAny6">
   <div class="my-badge">
