@@ -641,28 +641,33 @@ console.log(x);</code></pre>
 </div>
 </section>
 
-<section data-auto-animate id="promiseAny5-bis">
+<section data-auto-animate id="promiseAny5-warning1">
   <div class="my-badge">
     <h1 style="text-transform: none;">Promise.race()</h1>
-    <span>Warnings ⚠️</span>
+    <span class="red">Warnings ⚠️</span>
   </div>
 
-  <p class="fragment">If we pass an empty array as the argument of Promise.race(),
+  <p>If we pass an empty array as the argument of Promise.race(),
     the promise will be stuck pending forever.</p>
     <div class="fragment">
       <pre><code>const foreverPendingPromise = Promise.race([])</code></pre>
   </div>
-  <p class="fragment">If we pass an array That contains one or more non-promise value(s)
+</section>
+
+<section data-auto-animate id="promiseAny5-warning2">
+  <div class="my-badge">
+    <h1 style="text-transform: none;">Promise.race()</h1>
+    <span class="red">Warnings ⚠️</span>
+  </div>
+
+  <p>If we pass an array That contains one or more non-promise value(s)
     and/or an already settled promise,
-    then Promise.race will resolve to the first of these values found in the array.<br>
-  Hence here the order matters!</p>
+    then Promise.race will resolve to the first of these values!</p>
     <div class="fragment">
       <pre><code>Promise.race([Promise.resolve(5), Promise.resolve("aString")]);</code></pre>
       <p>Will resolve with 5!</p>
-  </div>
+      </div>
 </section>
-
-
 
 <section data-auto-animate id="promiseAny6">
   <div class="my-badge">
