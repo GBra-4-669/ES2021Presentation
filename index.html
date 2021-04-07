@@ -610,6 +610,11 @@ console.log(x);</code></pre>
 <div class="fragment">
 <p>Wait for all, reject even if just 1 fails</p>
 </div>
+
+<aside class="notes">
+  🔚 I am going to refer to the array of promises,
+  but we can pass any iterable of promises to any of those Promise class static methods
+</aside>
 </section>
 
 <section data-auto-animate id="promiseAny4">
@@ -637,7 +642,7 @@ console.log(x);</code></pre>
 </div>
 <div class="fragment">
 <p>Just give me the first one that fulfills or rejects</p>
-<p class="fragment">A pending Promise that asynchronously yields and returns the value of the first promise in the given iterable to fulfill or reject.</p>
+<p class="fragment">This method retuns a pending Promise that asynchronously yields the value of the first promise in the given array to fulfill or reject.</p>
 </div>
 </section>
 
@@ -691,7 +696,7 @@ console.log(x);</code></pre>
 <p class="fragment">It will be thrown by default by Promise.any
   when no promise in the array of promises fulfills
 </p>
-<p class="fragment">But we can also throw it ourselves!</p>
+<p class="fragment">But we can also throw it manually!</p>
 </div>
 </section>
 
@@ -748,22 +753,22 @@ console.log(x);</code></pre>
       </thead>
       <tbody>
         <tr>
-          <td><a href="#"><code>Promise.all()</code></a></td>
+          <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"><code>Promise.all()</code></a></td>
           <td>short-circuits when an input value is rejected</td>
           <td>added in ES2015</td>
         </tr>
         <tr>
-          <td><a href="#"><code>Promise.race()</code></a></td>
+          <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"><code>Promise.race()</code></a></td>
           <td>short-circuits when an input value is settled</td>
           <td>added in ES2015</td>
         </tr>
         <tr>
-          <td><a href="#"><code>Promise.allSettled()</code></a></td>
+          <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled"><code>Promise.allSettled()</code></a></td>
           <td>does not short-circuit</td>
           <td><a href="https://github.com/tc39/proposal-promise-allSettled">added in ES2020</a></td>
         </tr>
         <tr>
-          <td><a href="#"><code>Promise.any()</code></a></td>
+          <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any"><code>Promise.any()</code></a></td>
           <td>short-circuits when an input value is fulfilled</td>
           <td><a href="https://github.com/tc39/proposal-promise-any">Stage 4 (scheduled for ES2021)</a></td>
         </tr>
@@ -780,6 +785,7 @@ console.log(x);</code></pre>
      <p class="fragment">Garbage collectors are complicated and the timing of garbage collection is different in different user agents</p>
 
      <aside class="notes">
+       📝<br>
        📝<br>
        The World Wide Web Consortium is the main international standards organization for the World Wide Web<br>
        The timing of garbage collection is different in different user agents,
